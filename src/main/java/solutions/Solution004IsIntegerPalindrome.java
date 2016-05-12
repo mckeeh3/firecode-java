@@ -9,10 +9,6 @@ public class Solution004IsIntegerPalindrome {
     }
 
     private static int leftDigit(int x) {
-        int n = 10;
-        while (x / n > 0) {
-            n *= 10;
-        }
         return x / magnitude(x);
     }
 
