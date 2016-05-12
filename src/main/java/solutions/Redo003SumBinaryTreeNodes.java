@@ -6,18 +6,6 @@ package solutions;
  */
 public class Redo003SumBinaryTreeNodes {
     public int sum(TreeNode root) {
-        if (root == null) {
-            return 0;
-        } else {
-            return sum(root, 0);
-        }
-    }
-
-    private int sum(TreeNode node, int sum) {
-        if (node == null) {
-            return sum;
-        } else {
-            return sum + node.data + sum(node.left, sum) + sum(node.right, sum);
-        }
+        return root == null ? 0 : root.data + sum(root.left) + sum(root.right);
     }
 }
