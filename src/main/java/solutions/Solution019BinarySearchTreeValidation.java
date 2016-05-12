@@ -5,18 +5,25 @@ package solutions;
  */
 public class Solution019BinarySearchTreeValidation {
     public static boolean validateBST(TreeNode root) {
-        return validate(root);
+        return root == null || validate(root, root.left) && validate(root, root.right);
     }
 
-    private static boolean validate(TreeNode node) {
-        return node == null || validateLeft(node) && validateRight(node);
+    private static boolean validate(TreeNode root, TreeNode node) {
+        return node == null
+                || findNode(root, node.data) != null
+                && validate(root, node.left)
+                && validate(root, node.right);
     }
 
-    private static boolean validateLeft(TreeNode node) {
-        return node.left == null || node.data > node.left.data && validate(node.left);
-    }
-
-    private static boolean validateRight(TreeNode node) {
-        return node.right == null || node.data < node.right.data && validate(node.right);
+    private static TreeNode findNode(TreeNode node, int x) {
+        if (node == null) {
+            return null;
+        } else if (x == node.data) {
+            return node;
+        } else if (x < node.data) {
+            return findNode(node.left, x);
+        } else {
+            return findNode(node.right, x);
+        }
     }
 }
